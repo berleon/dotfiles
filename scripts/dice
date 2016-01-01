@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+ITERATIONS="$1"
+if [ "$ITERATIONS" == "" ]; then
+    ITERATIONS="1"
+fi
+ITERATIONS=$(($ITERATIONS - 1))
+for i in $(seq 0 $ITERATIONS)
+do
+    random=$(od -An -N1 -i /dev/random)
+    echo -ne "$(($random % 6 + 1))"
+done
+
+echo ""

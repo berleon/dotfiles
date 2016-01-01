@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+SERVER=$1
+if [ "$SERVER" == "" ]; then
+    SERVER="shanghai"
+fi
+
+ssh -X -C leonsixt@${SERVER}.imp.fu-berlin.de

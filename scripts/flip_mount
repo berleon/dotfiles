@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+sshfs leon@flip:/home/leon  /mnt/flip -oallow_other -ononempty

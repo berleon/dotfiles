@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+shred -n 20 -z -u $@
