@@ -8,6 +8,7 @@ echo "############################# Link dotfiles ##############################
 for file in $DOTFILES; do
     DEST=$HOME/.${file#$DOT_DIR/}
     echo ".${file#$DOT_DIR/}"
+    mkdir -p `dirname $DEST`
     ln -sf $file $DEST
 done
 
