@@ -1,0 +1,33 @@
+
+export PATH="$HOME/.rbenv/bin:$PATH:~/bin:~/.cabal/bin"
+export IDEA_JDK=/opt/jdk
+
+
+shopt -s autocd
+
+source /usr/share/doc/pkgfile/command-not-found.bash
+
+function exitcode {
+	if [ $1 != 0 ]; then
+		 echo -en "\e[1;31m$1\e[0m-";
+	fi
+}
+batformat() {
+    batstat=$(bat 20)
+    if [ "$batstat" != "" ]; then
+       echo -ne "[$batstat]-"
+    fi
+}
+PS1="\$(exitcode \$?)\A-\$(batformat)[\e[0;32m\u@\h:\e[0;33m\w\e[0m\$ "
+
+
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
+fi
+
+setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,de
+
+eval "$(rbenv init -)"
+
+# added by Anaconda3 2.3.0 installer
+export PATH="$PATH:/home/leon/anaconda3/bin"
