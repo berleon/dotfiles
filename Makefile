@@ -4,7 +4,7 @@ ZSH_GIT_PROMPT=$(shell realpath -m ~/.oh-my-zsh/custom/zsh-git-prompt)
 PLUG_VIM=$(shell  realpath -m ~/.vim/autoload/plug.vim)
 PLUG_NVIM=$(shell realpath -m ~/.config/nvim/autoload/plug.vim)
 
-all: oh-my-zsh vim-plug link vim-install-plugins nvim-install-plugins
+all: oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins
 
 link:
 	./link.sh
@@ -18,7 +18,9 @@ $(OH_MY_ZSH):
 $(ZSH_GIT_PROMPT): $(OH_MY_ZSH)
 	git clone https://github.com/olivierverdier/zsh-git-prompt.git $(ZSH_GIT_PROMPT)
 
-vim-plug: $(PLUG_NVIM) $(PLUG_VIM)
+vim-setup: $(PLUG_NVIM) $(PLUG_VIM)
+	mkdir -p ~/.vim/tmp/backup/
+	mkdir -p ~/.vim/tmp/swap/
 
 $(PLUG_VIM):
 	curl -fLo $(PLUG_VIM) --create-dirs \
