@@ -4,3 +4,5 @@ export IDEA_JDK="/opt/oracle_jdk/"
 export LD_LIBRARY_PATH="/usr/local/lib/"
 export PATH=$PATH:/home/leon/anaconda3/bin
 export PATH=$PATH:~/scripts
+
+export TERM=xterm-256color

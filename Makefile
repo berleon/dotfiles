@@ -35,6 +35,7 @@ $(PLUG_NVIM): $(PLUG_VIM)
 vim-install-plugins:
 	vim +PlugInstall +qall
 nvim-install-plugins:
+	ln -sf ~/.vim/colors ~/.config/nvim/colors
 	(which nvim && nvim +PlugInstall +qall) || true
 clean:
 	./clean.sh
