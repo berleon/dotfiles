@@ -1,6 +1,55 @@
 
 set nocompatible
-filetype off
+
+" Packages {{{
+call plug#begin('~/.vim/plugged')
+" Syntax {{{
+
+" syntax checking
+Plug 'scrooloose/syntastic'
+
+" }}}
+" Basic {{{
+
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
+" Git plugin
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+" snippet engine.
+Plug 'SirVer/ultisnips'
+" actual snippets
+Plug 'honza/vim-snippets'
+
+
+" }}}
+" Python {{{
+
+" Python Autocomplete
+Plug 'davidhalter/jedi-vim'
+
+let g:syntastic_python_checkers = ['pylint']
+Plug 'hynek/vim-python-pep8-indent'
+
+" }}}
+" Rust {{{
+Plug 'rust-lang/rust.vim'
+
+" }}}
+" HTML {{{
+au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+Plug 'wavded/vim-stylus'
+
+" }}}
+" CoffeeScript {{{
+Plug 'kchmck/vim-coffee-script'
+" }}}
+call plug#end()
+" }}}
+
+" General {{{
 
 
 let mapleader = ","
@@ -9,170 +58,20 @@ let maplocalleader = "\\"
 " enable 256 colors
 set t_Co=256
 
-" Packages {{{
-" NeoBundle Setup {{{
-
-
-
-call plug#begin('~/.vim/plugged')
-
-
-" Packages {{{
-" Syntax {{{
-
-Plug 'cstrahan/vim-capnp'
-
-" }}}
-" Basic {{{
-Plug 'scrooloose/nerdtree'
-
-nmap <C-n> :NERDTreeToggle<CR>
-" Disable the scrollbars (NERDTree)
-set guioptions-=r
-set guioptions-=L
-
-Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
-
-nmap <leader># :call NERDComment(0, "invert")<cr>
-vmap <leader># :call NERDComment(0, "invert")<cr>
-
-
-Plug 'tpope/vim-fugitive'
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gx :Gremove<cr>
-nnoremap <leader>gm :Gmove<space>
-nnoremap <leader>gr :Gread<cr>
-nnoremap <leader>ga :Gwrite<cr>
-nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>gp !git push<cr>
-nnoremap <leader>gl !git pull<cr>
-
-nmap <leader>g :Ggrep
-" ,f for global git serach for word under the cursor (with highlight)
-nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
-" same in visual mode
-:vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
-
-autocmd FileType gitcommit set tw=68 spell
-autocmd FileType gitcommit setlocal foldmethod=manual
-
-Plug 'tpope/vim-markdown'
-
-" Track the engine.
-Plug 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" }}}
-" Python {{{
-"
-Plug 'scrooloose/syntastic'
-let g:syntastic_python_checkers = ['pylint']
-
-Plug 'hynek/vim-python-pep8-indent'
-
-" }}}
-
-" Rust {{{
-Plug 'rust-lang/rust.vim'
-
-" }}}
-
-" HTML {{{
-au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-Plug 'wavded/vim-stylus'
-
-" }}}
-
-" Latex {{{
-
-" LaTeX (rubber) macro for compiling
-nnoremap <leader>c :w<CR>:!rubber --pdf --warn all %<CR>
-
-" View PDF macro; '%:r' is current file's root (base) name.
-nnoremap <leader>v :!mupdf %:r.pdf &<CR><CR>
-
-" }}}
-" CoffeeScript {{{
-Plug 'kchmck/vim-coffee-script'
-
-" }}}
-" }}}
-
-call plug#end()
-
-" }}}
-
-" General {{{
-
 filetype plugin indent on
 syntax on
+
+if has("gui_running")
+    set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+endif
 
 colorscheme leon
 
 " Set 5 lines to the cursor - when moving vertically
-set scrolloff=0
+set scrolloff=5
 
 " This orders Vim to open the buffer.
 set switchbuf=useopen
-
-
-" Mappings {{
-
-" You want to be part of the gurus? Time to get in serious stuff and stop using
-
-noremap <left> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <right> <nop>
-
-" Yank from current cursor position to end of line
-map Y y$
-" Yank content in OS's clipboard. `o` stands for "OS's Clipoard".
-vnoremap <leader>yo "*y
-" Paste content from OS's clipboard
-nnoremap <leader>po "*p
-
-" clear highlight after search
-noremap <silent><Leader>/ :nohls<CR>
-
-" better ESC
-inoremap jk <Esc>
-
-nmap <silent> <leader>hh :set invhlsearch<CR>
-nmap <silent> <leader>ll :set invlist<CR>
-nmap <silent> <leader>nn :set invnumber<CR>
-nmap <silent> <leader>pp :set invpaste<CR>
-nmap <silent> <leader>ii :set invrelativenumber<CR>
-
-" Seriously, guys. It's not like :W is bound to anything anyway.
-command! W :w
-
-" Emacs bindings in command line mode
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-
-" Source current line
-vnoremap <leader>L y:execute @@<cr>
-" Source visual selection
-nnoremap <leader>L ^vg_y:execute @@<cr>
-
-" Fast saving and closing current buffer without closing windows displaying the
-" buffer
-nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " }}}
 
@@ -250,6 +149,102 @@ set wildmenu
 set dictionary=/usr/share/dict/words
 " }}}
 
+" Mappings {{{
+
+noremap <left> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <right> <nop>
+
+" Yank from current cursor position to end of line
+map Y y$
+
+" clear highlight after search
+noremap <silent><Leader>/ :nohls<CR>
+
+nmap <silent> <leader>ih :set invhlsearch<CR>
+nmap <silent> <leader>il :set invlist<CR>
+nmap <silent> <leader>in :set invnumber<CR>
+nmap <silent> <leader>ip :set invpaste<CR>
+nmap <silent> <leader>ii :set invrelativenumber<CR>
+
+" Seriously, guys. It's not like :W is bound to anything anyway.
+command! W :w
+
+" Source current line
+vnoremap <leader>L y:execute @@<cr>
+" Source visual selection
+nnoremap <leader>L ^vg_y:execute @@<cr>
+
+" Fast saving and closing current buffer without closing windows displaying the
+" buffer
+nmap <leader>wq :w!<cr>:Bclose<cr>
+
+" newline in normal mode
+nmap <S-Enter> O<Esc>
+nmap <CR> A<Esc>
+" }}}
+
+" Latex {{{
+
+" LaTeX (rubber) macro for compiling
+au FileType tex noremap <leader>l :w \| !rubber --pdf --warn all % <CR><CR>
+
+" View PDF macro; '%:r' is current file's root (base) name.
+au FileType tex nnoremap <leader>s :!evince %:r.pdf &<CR><CR>
+
+" }}}
+
+" NerdTree {{{
+
+nmap <C-n> :NERDTreeToggle<CR>
+" Disable the scrollbars (NERDTree)
+set guioptions-=r
+set guioptions-=L
+
+" }}}
+
+" NerdComment {{{
+
+nmap <leader># :call NERDComment(0, "invert")<cr>
+vmap <leader># :call NERDComment(0, "invert")<cr>
+" }}}
+
+" Git {{{
+
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gx :Gremove<cr>
+nnoremap <leader>gm :Gmove<space>
+nnoremap <leader>gr :Gread<cr>
+nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gp !git push<cr>
+nnoremap <leader>gl !git pull<cr>
+
+nmap <leader>g :Ggrep
+" ,f for global git serach for word under the cursor (with highlight)
+nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
+" same in visual mode
+:vmap <leader>f y:let @/=escape(@", '\\[]$^*.')<CR>:set hls<CR>:silent Ggrep -F "<C-R>=escape(@", '\\"#')<CR>"<CR>:ccl<CR>:cw<CR><CR>
+
+autocmd FileType gitcommit set tw=68 spell
+autocmd FileType gitcommit setlocal foldmethod=manual
+
+" }}}
+
+" UtilSnips {{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" }}}
+
 " Triggers {{{
 
 " Save when losing focus
@@ -288,7 +283,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " }}}
 
-" . searching {{{
+" Searching {{{
 
 " sane regexes
 nnoremap / /\v
@@ -325,6 +320,18 @@ nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'
 nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
 " }}}
+
+" }}}
+
+" Past & Copy {{{
+
+" easy paste
+nnoremap <leader>p "+gp
+nnoremap <leader>P "+gP
+
+" easy copy
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
 
 " }}}
 
@@ -370,7 +377,7 @@ vmap <C-Down> ]egv
 
 " }}}
 
-" . folding {{{
+" Folding {{{
 
 set foldlevelstart=0
 set foldmethod=syntax
@@ -412,14 +419,13 @@ hi! link ShowMarksHLm LineNr
 " _ Vim {{{
 augroup ft_vim
     au!
-
     au FileType vim setlocal foldmethod=marker
     au FileType help setlocal textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 " }}}
 
-" EXTENSIONS {{{
+" Extensions {{{
 
 " _. Scratch {{{
 source ~/.vim/functions/scratch_toggle.vim
@@ -439,46 +445,11 @@ source ~/.vim/functions/my_fold_text.vim
 
 " _. Gist {{{
 " Send visual selection to gist.github.com as a private, filetyped Gist
-" Requires the gist command line too (brew install gist)
-vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
+" Requires the gist command line too
+vnoremap <leader>G :w !gist -p -t %:e \| xclip -i -selection clipboard <cr>
 " }}}
 
-" }}}
-
-" TEXT OBJECTS {{{
-
-" Shortcut for [] motion
-onoremap ir i[
-onoremap ar a[
-vnoremap ir i[
-vnoremap ar a[
-
-" }}}
-
-
-nnoremap <A-k> <Esc>bnext
-nnoremap <A-k> <Esc>bprevious
-
-" easy paste
-nnoremap <leader>p "+gp
-nnoremap <leader>P "+gP
-
-" easy copy
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
-
-nmap <S-Enter> O<Esc>
-
-if has("gui_running")
-    set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-endif
-
-if $TERM == "xterm-256color"
-  set t_Co=256
-endif
-
-
-" Show syntax highlighting groups for word under cursor
+" Show syntax highlighting groups for word under cursor {{{
 nmap <F2> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
@@ -486,44 +457,6 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+" }}}
 
-
-
-
-nnoremap <leader>ez <C-w>s<C-w>j:e ~/.bashrc<cr>
-
-nnoremap <A-k> <Esc>bnext
-nnoremap <A-k> <Esc>bprevious
-imap jj <Esc>
-
-colorscheme leon
-
-if has("gui_running")
-    set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
-endif
-
-if $TERM == "xterm-256color"
-  set t_Co=256
-endif
-
-nore ; :
-
-
-" Show syntax highlighting groups for word under cursor
-nmap <F2> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-let g:no_rust_conceal = 1
-
-let g:SuperTabMappingForward = '<s-tab>'
-let g:SuperTabMappingBackward = '<c-tab>'
-
-set linespace=2
-set colorcolumn=80
-
-
+" }}}
