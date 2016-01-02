@@ -51,7 +51,7 @@ call plug#end()
 
 " General {{{
 
-let mapleader = ","
+let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
 " enable 256 colors
