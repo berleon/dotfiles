@@ -12,9 +12,9 @@ Plug 'scrooloose/syntastic'
 " Basic {{{
 
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
 " Git plugin
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -50,7 +50,6 @@ call plug#end()
 " }}}
 
 " General {{{
-
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -203,13 +202,10 @@ set guioptions-=r
 set guioptions-=L
 
 " }}}
+" Airline {{{
 
-" NerdComment {{{
-
-nmap <leader># :call NERDComment(0, "invert")<cr>
-vmap <leader># :call NERDComment(0, "invert")<cr>
+let g:airline#extensions#tabline#enabled = 1
 " }}}
-
 " Git {{{
 
 nnoremap <leader>gb :Gblame<cr>
@@ -403,9 +399,6 @@ nnoremap <leader>eg <C-w>s<C-w>j:e ~/.gitconfig<cr>
 nnoremap <leader>ez <C-w>s<C-w>j:e ~/.zshrc<cr>
 nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
 
-" --------------------
-
-set ofu=syntaxcomplete#Complete
 
 " showmarks
 let g:showmarks_enable = 1
