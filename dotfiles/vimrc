@@ -394,9 +394,9 @@ vmap <C-Down> ]egv
 set foldlevelstart=0
 set foldmethod=syntax
 
-" Space to toggle folds.
-nnoremap <space> za
-vnoremap <space> za
+"  to toggle folds.
+nnoremap <space>t za
+vnoremap <space>t za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
