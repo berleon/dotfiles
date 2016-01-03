@@ -9,28 +9,32 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 
 " }}}
-" Basic {{{
+let g:syntastic_python_checkers = ['pylint']
+" UI {{{
 
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
+" }}}
+" Edit {{{
 Plug 'tpope/vim-surround'
-" Git plugin
+Plug 'Raimondi/delimitMate'
+" }}}
+" Git {{{
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
+" Git extension
+Plug 'gregsexton/gitv'
+" }}}
+" Snippet {{{
+
 " snippet engine.
 Plug 'SirVer/ultisnips'
 " actual snippets
 Plug 'honza/vim-snippets'
 
-
 " }}}
 " Python {{{
 
-" Python Autocomplete
-Plug 'davidhalter/jedi-vim'
-
-let g:syntastic_python_checkers = ['pylint']
 Plug 'hynek/vim-python-pep8-indent'
 
 " }}}
@@ -45,6 +49,9 @@ Plug 'wavded/vim-stylus'
 " }}}
 " CoffeeScript {{{
 Plug 'kchmck/vim-coffee-script'
+" }}}
+" Markdown {{{
+Plug 'tpope/vim-markdown'
 " }}}
 call plug#end()
 " }}}
