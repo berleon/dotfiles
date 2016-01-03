@@ -16,6 +16,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 " }}}
+" Utility {{{
+
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+" }}}
 " Edit {{{
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
@@ -24,6 +29,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-fugitive'
 " Git extension
 Plug 'gregsexton/gitv'
+" show diff on the left
+Plug 'airblade/vim-gitgutter'
 " }}}
 " Snippet {{{
 
@@ -162,6 +169,18 @@ noremap <left> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 noremap <right> <nop>
+
+" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-^> <C-o><C-^>
+
+" Buffers
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprev<cr>
+
 
 nmap <Leader><Leader> V
 " Yank from current cursor position to end of line
@@ -357,8 +376,6 @@ noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
 " Easy buffer navigation
-noremap <leader>bp :bprevious<cr>
-noremap <leader>bn :bnext<cr>
 
 " Reselect visual block after indent/outdent
 vnoremap < <gv
