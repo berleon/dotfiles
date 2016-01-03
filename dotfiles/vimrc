@@ -191,16 +191,6 @@ nmap <S-Enter> O<Esc>
 nmap <CR> A<Esc>
 " }}}
 
-" Latex {{{
-
-" LaTeX (rubber) macro for compiling
-au FileType tex noremap <leader>l :w \| !rubber --pdf --warn all % <CR><CR>
-
-" View PDF macro; '%:r' is current file's root (base) name.
-au FileType tex nnoremap <leader>s :!evince %:r.pdf &<CR><CR>
-
-" }}}
-
 " NerdTree {{{
 
 nmap <C-n> :NERDTreeToggle<CR>
