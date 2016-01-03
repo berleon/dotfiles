@@ -157,11 +157,13 @@ set dictionary=/usr/share/dict/words
 
 " Mappings {{{
 
+" disable arrows
 noremap <left> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 noremap <right> <nop>
 
+nmap <Leader><Leader> V
 " Yank from current cursor position to end of line
 map Y y$
 
@@ -174,8 +176,10 @@ nmap <silent> <leader>in :set invnumber<CR>
 nmap <silent> <leader>ip :set invpaste<CR>
 nmap <silent> <leader>ii :set invrelativenumber<CR>
 
-" Seriously, guys. It's not like :W is bound to anything anyway.
 command! W :w
+
+" fast save
+nnoremap <Leader>w :w<CR>
 
 " Source current line
 vnoremap <leader>L y:execute @@<cr>
@@ -188,7 +192,7 @@ nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " newline in normal mode
 nmap <S-Enter> O<Esc>
-nmap <CR> A<Esc>
+nmap <CR> o<Esc>
 " }}}
 
 " NerdTree {{{
@@ -199,10 +203,12 @@ set guioptions-=r
 set guioptions-=L
 
 " }}}
+
 " Airline {{{
 
 let g:airline#extensions#tabline#enabled = 1
 " }}}
+
 " Git {{{
 
 nnoremap <leader>gb :Gblame<cr>
@@ -353,10 +359,6 @@ noremap <C-l>  <C-w>l
 " Easy buffer navigation
 noremap <leader>bp :bprevious<cr>
 noremap <leader>bn :bnext<cr>
-
-" Splits ,v and ,h to open new splits (vertical and horizontal)
-nnoremap <leader>v <C-w>v<C-w>l
-nnoremap <leader>h <C-w>s<C-w>j
 
 " Reselect visual block after indent/outdent
 vnoremap < <gv
