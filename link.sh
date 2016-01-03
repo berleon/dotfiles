@@ -10,7 +10,7 @@ for file in $DOTFILES; do
     DEST=$HOME/.${file#$DOT_DIR/}
     echo ".${file#$DOT_DIR/}"
     mkdir -p `dirname $DEST`
-    if [ ! -L "$DEST" ]; then
+    if [ -e "$DEST" ] && [ ! -L "$DEST" ]; then
         BACKUP_DEST=$BACKUP/${DEST#$HOME}
         mkdir -p `dirname $BACKUP_DEST`
         cp $DEST $BACKUP_DEST
