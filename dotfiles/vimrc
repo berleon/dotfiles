@@ -50,7 +50,6 @@ Plug 'rust-lang/rust.vim'
 
 " }}}
 " HTML {{{
-au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 Plug 'wavded/vim-stylus'
 
 " }}}
@@ -109,12 +108,14 @@ set guioptions-=T
 
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
+set breakindent
 
 set notimeout
 set ttimeout
 set ttimeoutlen=10
+set updatetime=250
 
-" _ backups {{{
+" backups {{{
 set undodir=~/.vim/tmp/undo//     " undo files
 set undofile
 set undolevels=3000
@@ -366,16 +367,29 @@ noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
 
 " Easy buffer navigation
+noremap <leader>bp :bprevious<cr>
+noremap <leader>bn :bnext<cr>
+
+
+
+" <tab> / <s-tab> | Circular windows navigation
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
+
+" Moving lines
+nnoremap <silent> <C-k> :move-2<cr>
+nnoremap <silent> <C-j> :move+<cr>
+nnoremap <silent> <C-h> <<
+nnoremap <silent> <C-l> >>
+xnoremap <silent> <C-k> :move-2<cr>gv
+xnoremap <silent> <C-j> :move'>+<cr>gv
+xnoremap <silent> <C-h> <gv
+xnoremap <silent> <C-l> >gv
 
 " Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
+xnoremap < <gv
+xnoremap > >gv
 
-" Bubbling lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
 
 " }}}
 
