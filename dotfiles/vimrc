@@ -103,8 +103,10 @@ set list
 " Don't redraw while executing macros
 set nolazyredraw
 
-" Disable the macvim toolbar
+" Disable the gui toolbar
 set guioptions-=T
+" Disable the gui menu bar
+set guioptions-=m
 
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
