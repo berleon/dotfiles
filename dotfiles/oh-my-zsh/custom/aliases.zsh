@@ -74,6 +74,6 @@ alias pingg='ping www.google.com -c 5'
 alias etags='ctags'
 
 alias m='make'
-alias mj='make -j4'
+alias mj='make -j`nproc`'
 
 alias pycache_clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
