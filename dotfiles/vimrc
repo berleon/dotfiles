@@ -171,11 +171,10 @@ noremap <down> <nop>
 noremap <right> <nop>
 
 " Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
-inoremap <C-^> <C-o><C-^>
+inoremap <C-h> <left>
+inoremap <C-l> <right>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
 
 " Buffers
 nnoremap ]b :bnext<cr>
@@ -358,12 +357,6 @@ vnoremap k gk
 " move half page
 " nnoremap js <C-d>
 " nnoremap ks <C-u>
-
-" Easy splitted window navigation
-noremap <C-h>  <C-w>h
-noremap <C-j>  <C-w>j
-noremap <C-k>  <C-w>k
-noremap <C-l>  <C-w>l
 
 " Easy buffer navigation
 noremap <leader>bp :bprevious<cr>
