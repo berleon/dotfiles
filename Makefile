@@ -8,7 +8,7 @@ all: oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins
 
 link:
 	./link.sh
-	rm ~/scripts
+	rm -f ~/scripts
 	ln -sf `realpath scripts` ~/scripts
 
 oh-my-zsh: $(OH_MY_ZSH) $(ZSH_GIT_PROMPT)
