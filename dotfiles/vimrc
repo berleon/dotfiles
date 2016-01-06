@@ -307,7 +307,7 @@ set gdefault
 set hlsearch
 
 " clear search matching
-noremap <leader><space> :noh<cr>:call clearmatches()<cr>
+noremap <leader>c :noh<cr>:call clearmatches()<cr>
 
 " Don't jump when using * for search
 nnoremap * *<c-o>
