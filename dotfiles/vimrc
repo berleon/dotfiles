@@ -185,7 +185,6 @@ nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
 
 
-nmap <Leader><Leader> V
 " Yank from current cursor position to end of line
 map Y y$
 
