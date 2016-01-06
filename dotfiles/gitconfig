@@ -2,7 +2,7 @@
 	name = berleon
 	email = github@leon-sixt.de
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [push]
     default = simple
