@@ -79,3 +79,4 @@ alias mj='make -j`nproc`'
 alias pycache_clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
 
 alias mine="sudo chown -R `whoami`:`whoami` ."
+alias gtop='nvidia-smi'
