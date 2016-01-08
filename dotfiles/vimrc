@@ -375,6 +375,9 @@ vnoremap k gk
 noremap <leader>bp :bprevious<cr>
 noremap <leader>bn :bnext<cr>
 
+" Move in autocomplete dropdown menu
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 
 " <tab> / <s-tab> | Circular windows navigation
