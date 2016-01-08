@@ -4,7 +4,7 @@ ZSH_GIT_PROMPT=$(shell realpath -m ~/.oh-my-zsh/custom/zsh-git-prompt)
 PLUG_VIM=$(shell  realpath -m ~/.vim/autoload/plug.vim)
 PLUG_NVIM=$(shell realpath -m ~/.config/nvim/autoload/plug.vim)
 
-all: oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins
+all: oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins theanorc
 
 link:
 	./link.sh
@@ -38,5 +38,10 @@ vim-install-plugins:
 nvim-install-plugins:
 	ln -sf ~/.vim/colors ~/.config/nvim/colors
 	(which nvim && nvim +PlugInstall +qall) || true
+
+theanorc:
+	./theanorc.sh > ~/.theanorc
+
 clean:
 	./clean.sh
+	rm ~/.theanorc
