@@ -275,6 +275,17 @@ let g:UltiSnipsEditSplit="vertical"
 
 " }}}
 
+" Jedi {{{
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>a"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#force_py_version = 3
+" }}}
+
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
 augroup cline
