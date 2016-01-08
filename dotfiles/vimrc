@@ -49,7 +49,6 @@ Plug 'nvie/vim-flake8'
 Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
-
 " }}}
 " Rust {{{
 Plug 'rust-lang/rust.vim'
@@ -286,6 +285,10 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#force_py_version = 3
 " }}}
 
+" Goyo {{{
+nnoremap <leader>z :Goyo<CR>
+" }}}
+
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
 augroup cline
@@ -424,9 +427,6 @@ vnoremap <space>t za
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
 nnoremap zO zCzO
-
-" Use ,z to "focus" the current fold.
-nnoremap <leader>z zMzvzz
 
 " }}}
 
