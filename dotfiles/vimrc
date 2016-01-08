@@ -18,6 +18,7 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/goyo.vim'
 " }}}
 " Utility {{{
 
