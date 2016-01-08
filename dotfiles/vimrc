@@ -174,7 +174,13 @@ noremap <up> <nop>
 noremap <down> <nop>
 noremap <right> <nop>
 
+inoremap <left> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <right> <nop>
+
 " Movement in insert mode
+
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 inoremap <C-j> <down>
