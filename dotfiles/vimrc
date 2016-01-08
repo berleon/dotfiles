@@ -218,8 +218,9 @@ nnoremap <leader>L ^vg_y:execute @@<cr>
 nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " newline in normal mode
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+noremap <S-Enter> m`O<Esc>j``
+noremap <CR> m`o<Esc>k``
+
 " }}}
 
 " NerdTree {{{
