@@ -79,5 +79,6 @@ alias q='exit'
 alias j='jump'
 
 alias open='dispatch xdg-open'
+alias dis='dispatch'
 
 alias rm-secure='shred -n 20 -z -u $@'
