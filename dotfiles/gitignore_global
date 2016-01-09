@@ -34,3 +34,7 @@ tags
 *.iml
 .idea/
 
+# latexmk #
+##########
+*.fls
+*.fdb_latexmk
