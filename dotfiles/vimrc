@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 " syntax checking
 Plug 'scrooloose/syntastic'
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['flake8']
 " }}}
 
 " Colorscheme {{{
