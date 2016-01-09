@@ -60,12 +60,6 @@ alias pacro="/usr/bin/pacman -Qtdq > /dev/null && sudo /usr/bin/pacman -Rs \$(/u
 # }}
 
 
-
-# antlr
-alias antlr4='java -jar /usr/local/lib/antlr-4.0-complete.jar'
-alias grun='java -cp /usr/local/lib/antlr-4.0-complete.jar org.antlr.v4.runtime.misc.TestRig'
-
-
 # themedoc
 alias themedoc='~/dev/ruby/themedoc/bin/themedoc'
 
