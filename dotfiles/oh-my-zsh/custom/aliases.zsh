@@ -60,8 +60,6 @@ alias pacro="/usr/bin/pacman -Qtdq > /dev/null && sudo /usr/bin/pacman -Rs \$(/u
 # }}
 
 
-# themedoc
-alias themedoc='~/dev/ruby/themedoc/bin/themedoc'
 
 alias myxkbmap='setxkbmap -layout "us, de" -option -option grp:shifts_toggle -option caps:escape -option eurosign:e'
 alias pingg='ping www.google.com -c 5'
