@@ -75,3 +75,8 @@ alias pycache_clean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -r
 alias mine="sudo chown -R `whoami`:`whoami` ."
 alias gtop='nvidia-smi'
 alias q='exit'
+
+# fast jumps
+alias j='jump'
+
+alias open='dispatch xdg-open'
