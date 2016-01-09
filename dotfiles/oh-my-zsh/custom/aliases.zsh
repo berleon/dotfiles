@@ -7,6 +7,7 @@ if [ $UID -ne 0 ]; then
     alias root='sudo su'
     alias reboot='sudo systemctl reboot'
     alias poweroff='sudo systemctl poweroff'
+    alias pc_suspend='sudo systemctl suspend'
     alias update='sudo pacman -Su'
     alias netctl='sudo netctl'
 fi
