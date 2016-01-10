@@ -1,10 +1,12 @@
-
 OH_MY_ZSH=$(shell realpath -m ~/.oh-my-zsh)
 ZSH_GIT_PROMPT=$(shell realpath -m ~/.oh-my-zsh/custom/zsh-git-prompt)
 PLUG_VIM=$(shell  realpath -m ~/.vim/autoload/plug.vim)
 PLUG_NVIM=$(shell realpath -m ~/.config/nvim/autoload/plug.vim)
+BG_IMAGE="http://i.imgur.com/uneOa.png"
+GET_BACKGROUND=$(shell realpath ~/background.png)
 
-all: oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins theanorc
+
+all: $(GET_BACKGROUND) oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins theanorc
 
 link:
 	./link.sh
@@ -35,12 +37,16 @@ $(PLUG_NVIM): $(PLUG_VIM)
 
 vim-install-plugins:
 	vim +PlugInstall +qall
+
 nvim-install-plugins:
 	ln -sf ~/.vim/colors ~/.config/nvim/colors
 	(which nvim && nvim +PlugInstall +qall) || true
 
 theanorc:
 	./theanorc.sh > ~/.theanorc
+
+$(GET_BACKGROUND):
+	curl -L $(BG_IMAGE) > $(GET_BACKGROUND)
 
 clean:
 	./clean.sh
