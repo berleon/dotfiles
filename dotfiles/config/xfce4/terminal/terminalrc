@@ -23,4 +23,6 @@ ColorCursor=#96ab830a6f68
 TitleInitial=
 TitleMode=TERMINAL_TITLE_REPLACE
 ColorBackground=#262626262626
+FontAllowBold=FALSE
+ScrollingBar=TERMINAL_SCROLLBAR_NONE
 
