@@ -161,3 +161,8 @@ assign [class="Gitg"] 8
 # Border
 for_window [class = "^.*"] border pixel 2 No header
 
+exec feh --bg-scale /home/leon/background.png
+exec --no-startup-id thunderbird
+exec --no-startup-id firefox
+exec --no-startup-id i3-msg 'workspace 8; exec xfce4-terminal;'
+exec --no-startup-id i3-msg 'workspace 7; exec xfce4-terminal;'
