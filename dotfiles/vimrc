@@ -21,7 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 " }}}
 " Utility {{{
-
+Plug 'danro/rename.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 " }}}
