@@ -29,6 +29,7 @@ Plug 'tpope/vim-dispatch'
 " Edit {{{
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-commentary'
 " }}}
 " Git {{{
 Plug 'tpope/vim-fugitive'
