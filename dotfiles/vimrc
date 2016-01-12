@@ -15,6 +15,7 @@ Plug 'morhetz/gruvbox'
 " }}}
 
 " UI {{{
+Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
