@@ -187,17 +187,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <right> <nop>
 
-" Movement in insert mode
-
-inoremap <C-h> <left>
-inoremap <C-l> <right>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-
-" Buffers
-nnoremap ]b :bnext<cr>
-nnoremap [b :bprev<cr>
-
 
 " Yank from current cursor position to end of line
 map Y y$
@@ -215,11 +204,6 @@ command! W :w
 
 " fast save
 nnoremap <Leader>w :w<CR>
-
-" Source current line
-vnoremap <leader>L y:execute @@<cr>
-" Source visual selection
-nnoremap <leader>L ^vg_y:execute @@<cr>
 
 " Fast saving and closing current buffer without closing windows displaying the
 " buffer
@@ -399,32 +383,22 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" move half page
-" nnoremap js <C-d>
-" nnoremap ks <C-u>
-
-" Easy buffer navigation
-noremap <leader>bp :bprevious<cr>
-noremap <leader>bn :bnext<cr>
 
 " Move in autocomplete dropdown menu
-inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("k"))
 
 
-" <tab> / <s-tab> | Circular windows navigation
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
+" Easy buffer navigation
+nnoremap <S-tab> :bprevious<cr>
+nnoremap <tab> :bnext<cr>
 
-" Moving lines
-nnoremap <silent> <C-k> :move-2<cr>
-nnoremap <silent> <C-j> :move+<cr>
-nnoremap <silent> <C-h> <<
-nnoremap <silent> <C-l> >>
-xnoremap <silent> <C-k> :move-2<cr>gv
-xnoremap <silent> <C-j> :move'>+<cr>gv
-xnoremap <silent> <C-h> <gv
-xnoremap <silent> <C-l> >gv
+" easy window navigation
+noremap <silent> <C-k> :wincmd k<CR>
+noremap <silent> <C-j> :wincmd j<CR>
+noremap <silent> <C-h> :wincmd h<CR>
+noremap <silent> <C-l> :wincmd l<CR>
+
 
 " Reselect visual block after indent/outdent
 xnoremap < <gv
