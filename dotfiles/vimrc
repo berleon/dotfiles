@@ -53,28 +53,18 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'alfredodeza/pytest.vim'
 " }}}
-" Rust {{{
+" Languages {{{
 Plug 'rust-lang/rust.vim'
-
-" }}}
-" HTML {{{
+" HTML
 Plug 'wavded/vim-stylus'
-
-" }}}
-" CoffeeScript {{{
 Plug 'kchmck/vim-coffee-script'
-" }}}
-" Markdown {{{
 Plug 'tpope/vim-markdown'
-" }}}
-" Docker {{{
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
 " }}}
 call plug#end()
 " }}}
-" JSON {{{
-Plug 'elzr/vim-json'
-" }}}
+
 " General {{{
 
 let mapleader = " "
