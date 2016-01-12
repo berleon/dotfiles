@@ -65,9 +65,14 @@ Plug 'kchmck/vim-coffee-script'
 " Markdown {{{
 Plug 'tpope/vim-markdown'
 " }}}
+" Docker {{{
+Plug 'ekalinin/Dockerfile.vim'
+" }}}
 call plug#end()
 " }}}
-
+" JSON {{{
+Plug 'elzr/vim-json'
+" }}}
 " General {{{
 
 let mapleader = " "
