@@ -157,6 +157,7 @@ bar {
 assign [class="Thunderbird"] 1
 assign [class="jetbrains-pycharm"] 8
 assign [class="Gitg"] 8
+assign [class="Firefox"] 9
 
 # Border
 for_window [class = "^.*"] border pixel 2 No header
