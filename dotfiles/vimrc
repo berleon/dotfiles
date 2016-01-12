@@ -49,6 +49,7 @@ Plug 'nvie/vim-flake8'
 Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
+Plug 'alfredodeza/pytest.vim'
 " }}}
 " Rust {{{
 Plug 'rust-lang/rust.vim'
@@ -283,6 +284,23 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#force_py_version = 3
+" }}}
+
+" Pytest {{{
+nnoremap <leader>tx :Pytest
+nnoremap <leader>tt :Pytest file<CR>
+nnoremap <leader>tc :Pytest class<CR>
+nnoremap <leader>tf :Pytest function<CR>
+nnoremap <leader>tp :Pytest project<CR>
+nnoremap <leader>te :Pytest session<CR>
+nnoremap <leader>tn :Pytest next<CR>
+
+
+nnoremap <leader>tst :Pytest file -s <CR>
+nnoremap <leader>tsc :Pytest class -s<CR>
+nnoremap <leader>tsf :Pytest function -s<CR>
+nnoremap <leader>tsp :Pytest project -s<CR>
+nnoremap <leader>tse :Pytest session -s<CR>
 " }}}
 
 " Goyo {{{
