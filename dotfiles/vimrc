@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
 " show diff on the left
 Plug 'airblade/vim-gitgutter'
+Plug 'ruanyl/vim-gh-line'
 " }}}
 " Snippet {{{
 
@@ -55,12 +56,14 @@ Plug 'alfredodeza/pytest.vim'
 " }}}
 " Languages {{{
 Plug 'rust-lang/rust.vim'
+Plug 'derekwyatt/vim-scala'
 " HTML
 Plug 'wavded/vim-stylus'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
+Plug 'cstrahan/vim-capnp'
 " }}}
 call plug#end()
 " }}}
@@ -238,6 +241,7 @@ nmap <leader>g :Ggrep
 autocmd FileType gitcommit set tw=68 spell
 autocmd FileType gitcommit setlocal foldmethod=manual
 
+let g:gh_open_command = 'firefox '
 " }}}
 
 " UtilSnips {{{
