@@ -82,3 +82,4 @@ alias open='dispatch xdg-open'
 alias dis='dispatch'
 
 alias rm-secure='shred -n 20 -z -u $@'
+alias prettyjson='python -m json.tool'
