@@ -1,9 +1,9 @@
-OH_MY_ZSH=$(shell realpath -m ~/.oh-my-zsh)
-ZSH_GIT_PROMPT=$(shell realpath -m ~/.oh-my-zsh/custom/zsh-git-prompt)
-PLUG_VIM=$(shell  realpath -m ~/.vim/autoload/plug.vim)
-PLUG_NVIM=$(shell realpath -m ~/.config/nvim/autoload/plug.vim)
+OH_MY_ZSH=$(HOME)/.oh-my-zsh
+ZSH_GIT_PROMPT=$(HOME)/.oh-my-zsh/custom/zsh-git-prompt
+PLUG_VIM=$(HOME)/.vim/autoload/plug.vim)
+PLUG_NVIM=$(HOME)/.config/nvim/autoload/plug.vim)
 BG_IMAGE="http://i.imgur.com/uneOa.png"
-GET_BACKGROUND=$(shell realpath ~/background.png)
+GET_BACKGROUND=$(HOME)/background.png
 
 
 all: $(GET_BACKGROUND) oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins theanorc
