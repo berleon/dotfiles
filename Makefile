@@ -1,7 +1,7 @@
 OH_MY_ZSH=$(HOME)/.oh-my-zsh
 ZSH_GIT_PROMPT=$(HOME)/.oh-my-zsh/custom/zsh-git-prompt
-PLUG_VIM=$(HOME)/.vim/autoload/plug.vim)
-PLUG_NVIM=$(HOME)/.config/nvim/autoload/plug.vim)
+PLUG_VIM=$(HOME)/.vim/autoload/plug.vim
+PLUG_NVIM=$(HOME)/.config/nvim/autoload/plug.vim
 BG_IMAGE="http://i.imgur.com/uneOa.png"
 GET_BACKGROUND=$(HOME)/background.png
 
