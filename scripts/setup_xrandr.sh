@@ -17,7 +17,7 @@ if [ "$1" == "test" ]; then
 fi
 
 if [ "$DP2" == "0" ] && [ "$DP3" == "0" ]; then
-    if [ "$1" == "test"]; then echo "Home"; fi
+    if [ "$1" == "test" ]; then echo "Home"; fi
     xrandr_VHh.sh
 elif [ "$VGA" == "0" ]; then
     if [ "$1" == "test" ]; then echo "Uni"; fi
