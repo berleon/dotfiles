@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+X="$@"
+X=${X/ /+}
+firefox --new-tab "https://www.google.de/?q=$X#safe=active&q=$X"
