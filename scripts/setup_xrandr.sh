@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+# ! /usr/bin/env bash
 
 function monitor_connected {
     MONITOR=$1
@@ -6,14 +6,14 @@ function monitor_connected {
     echo $?
 }
 
-VGA=$(monitor_connected "VGA1")
-DP2=$(monitor_connected "DP2")
-DP3=$(monitor_connected "DP3")
+VGA=$(monitor_connected "VGA-1")
+DP2=$(monitor_connected "DP-2")
+DP3=$(monitor_connected "DP-3")
 
 if [ "$1" == "test" ]; then
     echo "VGA: $VGA"
-    echo "DP2: $DP2"
-    echo "DP3: $DP3"
+    echo "DP-2: $DP2"
+    echo "DP-3: $DP3"
 fi
 
 if [ "$DP2" == "0" ] && [ "$DP3" == "0" ]; then
