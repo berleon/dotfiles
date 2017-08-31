@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+nvidia-docker run -it  -v /home:/home \
+    --privileged --net=host --cap-add=ALL \
+    $1
