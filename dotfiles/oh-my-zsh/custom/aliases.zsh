@@ -75,6 +75,8 @@ alias mine="sudo chown -R `whoami`:`whoami` ."
 alias gtop='nvidia-smi'
 alias q='exit'
 
+alias duh='du -h -d 1 . | sort -h'
+
 # fast jumps
 alias j='jump'
 
