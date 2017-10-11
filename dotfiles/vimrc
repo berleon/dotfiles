@@ -53,6 +53,8 @@ Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'alfredodeza/pytest.vim'
+Plug 'heavenshell/vim-pydocstring'
+
 " }}}
 " Languages {{{
 Plug 'rust-lang/rust.vim'
@@ -117,7 +119,6 @@ set guioptions-=m
 
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set showbreak=↪
-set breakindent
 
 set notimeout
 set ttimeout
@@ -160,7 +161,7 @@ set expandtab
 set wrap
 set formatoptions=qrn1
 set linespace=2
-set colorcolumn=80
+set colorcolumn=100
 " }}}
 
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
@@ -281,6 +282,13 @@ nnoremap <leader>tsc :Pytest class -s<CR>
 nnoremap <leader>tsf :Pytest function -s<CR>
 nnoremap <leader>tsp :Pytest project -s<CR>
 nnoremap <leader>tse :Pytest session -s<CR>
+" }}}
+" Pydocstring {{{
+let g:pydocstring_templates_dir = '~/.vim/template/pydocstring'
+let g:pydocstring_enable_comment = 0
+nmap <silent> <C-_> <Plug>(pydocstring)
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
 " }}}
 
 " Goyo {{{
