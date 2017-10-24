@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+set -e
+if [ "$2" == "" ] ;
+then
+    HN="hn";
+else
+    HN="$2";
+fi
+
+CMD="ssh $HN -t ssh $1 -t zsh"
+echo $CMD
+$CMD
