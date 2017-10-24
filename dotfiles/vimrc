@@ -30,6 +30,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
+Plug 'skwp/greplace.vim'
+
 " }}}
 " Git {{{
 Plug 'tpope/vim-fugitive'
@@ -54,6 +56,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'alfredodeza/pytest.vim'
 Plug 'heavenshell/vim-pydocstring'
+Plug 'tmhedberg/SimpylFold'
 
 " }}}
 " Languages {{{
@@ -206,8 +209,17 @@ nnoremap <Leader>w :w<CR>
 nmap <leader>wq :w!<cr>:Bclose<cr>
 
 " newline in normal mode
-noremap <S-Enter> m`O<Esc>j``
-noremap <CR> m`o<Esc>k``
+
+
+augroup commandlinewindow
+  autocmd!
+  autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+augroup END
+
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+nmap <S-Enter> O<Esc>j
+nmap <CR> o<Esc>k
 
 " }}}
 
@@ -454,6 +466,7 @@ augroup vimrc
     " Save when losing focus
     au FocusLost    * :silent! wall
     au BufNewFile,BufReadPost *.html setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
 augroup END
 
 " }}}
