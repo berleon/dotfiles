@@ -1,5 +1,5 @@
 [Configuration]
-FontName=Inconsolata 16
+FontName=Inconsolata 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
@@ -18,11 +18,19 @@ MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
 ScrollingLines=2048
 ColorForeground=#ffffd7d7afaf
-ColorPalette=#262626262626;#d7d75f5f5f5f;#aeaeaeae0000;#ffff87870000;#8787afafafaf;#d7d78787afaf;#8787afaf8787;#8a8a8a8a8a8a;#262626262626;#ffff55555555;#aeaeaeae0000;#ffff87870000;#8787afafafaf;#d7d78787afaf;#8787afaf8787;#ffffffffffff
+ColorPalette=rgb(38,38,38);rgb(215,95,95);rgb(174,174,0);rgb(255,135,0);rgb(74,122,122);rgb(215,135,175);rgb(135,175,135);rgb(138,138,138);rgb(38,38,38);rgb(255,85,85);rgb(174,174,0);rgb(255,135,0);rgb(68,113,113);rgb(215,135,175);rgb(135,175,135);rgb(255,255,255)
 ColorCursor=#96ab830a6f68
 TitleInitial=
 TitleMode=TERMINAL_TITLE_REPLACE
 ColorBackground=#262626262626
 FontAllowBold=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
+MiscBellUrgent=FALSE
+MiscMouseWheelZoom=TRUE
+MiscMiddleClickOpensUri=FALSE
+MiscCopyOnSelect=FALSE
+MiscRewrapOnResize=TRUE
+MiscUseShiftArrowsToScroll=FALSE
+MiscSlimTabs=FALSE
+MiscNewTabAdjacent=FALSE
 

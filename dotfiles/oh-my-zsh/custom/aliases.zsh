@@ -87,4 +87,4 @@ alias rm-secure='shred -n 20 -z -u $@'
 alias prettyjson='python -m json.tool'
 
 # ssh
-alias shannon='hn_ssh shannon'
+alias shannon='hn_ssh shannon hn_public'
