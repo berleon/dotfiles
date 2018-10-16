@@ -13,5 +13,3 @@ export LD_LIBRARY_PATH="/usr/local/lib/"
 export PATH=$PATH:/home/leon/anaconda3/bin
 export PATH=$PATH:~/scripts
 
-export PATH=$PATH:/usr/lib/ruby/gems/2.5.0/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
