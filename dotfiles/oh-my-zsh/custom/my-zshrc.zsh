@@ -15,5 +15,3 @@ export PATH=$PATH:~/scripts
 
 export PATH=$PATH:/usr/lib/ruby/gems/2.5.0/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
-
-export TERM=xterm-256color
