@@ -1,0 +1,43 @@
+#! /usr/bin/env bash
+
+function monitor_connected {
+    MONITOR=$1
+    xrandr | grep "$MONITOR connected" > /dev/null
+    echo $?
+}
+
+VGA=$(monitor_connected "VGA1")
+DP2=$(monitor_connected "DP2")
+DP3=$(monitor_connected "DP3")
+HDMI1=$(monitor_connected "HDMI1")
+
+if [ "$1" == "test" ]; then
+    echo "VGA: $VGA"
+    echo "DP2: $DP2"
+    echo "DP3: $DP3"
+    echo "HDMI1: $HDMI1"
+fi
+
+if [ "$1" == "clear" ]; then
+    xrandr_clear.sh
+    exit
+fi
+
+
+if [ "$DP2" == "0" ] && [ "$DP3" == "0" ]; then
+    if [ "$1" == "test" ]; then echo "Home"; fi
+    xrandr_HV.sh
+    i3-msg "workspace 1; move workspace to output DP3"
+    i3-msg "workspace 7; move workspace to output DP3"
+    i3-msg "workspace 8; move workspace to output DP2"
+    i3-msg "workspace 9; move workspace to output DP2"
+elif [ "$HDMI1" == "0" ]; then
+    if [ "$1" == "test" ]; then echo "Uni HDMI"; fi
+    xrandr_hdmi_uni.sh
+    i3-msg "workspace 7; move workspace to output LVDS1"
+    i3-msg "workspace 8; move workspace to output HDMI1"
+    i3-msg "workspace 9; move workspace to output HDMI1"
+else
+    if [ "$1" == "test" ]; then echo "Clear"; fi
+    xrandr_clear.sh
+fi

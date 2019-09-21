@@ -2,7 +2,7 @@
 xsetroot -cursor_name left_ptr
 setxkbmap -layout "us, de" -option -option grp:shifts_toggle -option caps:escape -option eurosign:e
 
-setup_xrandr.sh
+autorandr
 
 rm -f ~/.i3/i3log
 exec i3 -V >> ~/.i3/i3log 2>&1
