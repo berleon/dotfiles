@@ -1,4 +1,3 @@
-
 # Privileged access
 if [ $UID -ne 0 ]; then
     alias sudo='sudo '
@@ -19,7 +18,7 @@ alias ll='ls -l'
 alias la='ll -A'
 alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
-alias lt='ll -rt'                   # sort by date
+#alias lt='ll -rt'                   # sort by date
 alias lm='la | more'
 # }}}
 

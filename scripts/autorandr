@@ -26,7 +26,7 @@ fi
 
 if [ "$DP2" == "0" ] && [ "$DP3" == "0" ]; then
     if [ "$1" == "test" ]; then echo "Home"; fi
-    xrandr_HV.sh
+    xrandr_home.sh
     i3-msg "workspace 1; move workspace to output DP3"
     i3-msg "workspace 7; move workspace to output DP3"
     i3-msg "workspace 8; move workspace to output DP2"

@@ -1,0 +1,11 @@
+alias hue='hue-client'
+alias lo='hue-client lights 1,2 on'
+alias lf='hue-client lights 1,2 off'
+alias lw='hue-client lights 1,2 temp 500'
+alias lc='hue-client lights 1,2 temp 250'
+alias lcc='hue-client lights 1,2 temp 150'
+alias lt='hue-client lights 1,2 temp '
+alias lp='hue-client lights 1,2 255'
+alias ld='hue-client lights 1,2 50'
+alias lpow='hue-client lights 1,2 '
+
