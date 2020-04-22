@@ -86,3 +86,6 @@ alias rm-secure='shred -n 20 -z -u $@'
 alias prettyjson='python -m json.tool'
 
 alias weather='curl wttr.in/berlin'
+
+# set gg to google helper script
+unalias gg

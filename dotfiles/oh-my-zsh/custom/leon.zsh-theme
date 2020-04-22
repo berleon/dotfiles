@@ -3,7 +3,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="("
 source $ZSH/custom/zsh-git-prompt/zshrc.sh
 
 hostname_color() {
-    case "$HOST" in
+    case `hostname` in
         "tpad" )
             # 002 == green
             echo -n "002";;

@@ -13,3 +13,4 @@ export LD_LIBRARY_PATH="/usr/local/lib/"
 export PATH=$PATH:/home/leon/anaconda3/bin
 export PATH=$PATH:~/scripts
 
+export LANG=en_US.utf8
