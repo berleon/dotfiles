@@ -6,8 +6,7 @@ call plug#begin('~/.vim/plugged')
 " Syntax {{{
 
 " syntax checking
-Plug 'scrooloose/syntastic'
-let g:syntastic_python_checkers = ['flake8']
+
 " }}}
 
 " Colorscheme {{{
@@ -18,8 +17,8 @@ Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/goyo.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'junegunn/goyo.vim'
 " }}}
 " Utility {{{
 Plug 'danro/rename.vim'
@@ -28,8 +27,8 @@ Plug 'tpope/vim-dispatch'
 " }}}
 " Edit {{{
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-commentary'
+"Plug 'Raimondi/delimitMate'
+"Plug 'tpope/vim-commentary'
 Plug 'skwp/greplace.vim'
 
 " }}}
@@ -51,23 +50,23 @@ Plug 'ruanyl/vim-gh-line'
 " }}}
 " Python {{{
 Plug 'nvie/vim-flake8'
-Plug 'ivanov/vim-ipython'
+" Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
-Plug 'alfredodeza/pytest.vim'
-Plug 'heavenshell/vim-pydocstring'
+"Plug 'alfredodeza/pytest.vim'
+"Plug 'heavenshell/vim-pydocstring'
 Plug 'tmhedberg/SimpylFold'
 
 " }}}
 " Languages {{{
-Plug 'rust-lang/rust.vim'
-Plug 'derekwyatt/vim-scala'
+" Plug 'rust-lang/rust.vim'
+" Plug 'derekwyatt/vim-scala'
 " HTML
-Plug 'wavded/vim-stylus'
-Plug 'kchmck/vim-coffee-script'
+"Plug 'wavded/vim-stylus'
+"Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-markdown'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'elzr/vim-json'
+"Plug 'ekalinin/Dockerfile.vim'
+"Plug 'elzr/vim-json'
 Plug 'cstrahan/vim-capnp'
 " }}}
 call plug#end()
