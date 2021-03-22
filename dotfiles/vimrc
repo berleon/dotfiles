@@ -76,7 +76,7 @@ Plug 'lervag/vimtex'
 " HTML
 "Plug 'wavded/vim-stylus'
 "Plug 'kchmck/vim-coffee-script'
-Plug 'tpope/vim-markdown'
+Plug  'drmingdrmer/vim-syntax-markdown'
 "Plug 'ekalinin/Dockerfile.vim'
 "Plug 'elzr/vim-json'
 Plug 'cstrahan/vim-capnp'
