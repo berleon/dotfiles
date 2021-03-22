@@ -12,7 +12,7 @@ if [ $UID -ne 0 ]; then
 fi
 
 ## ls ## {{{
-alias ls='ls -hF --color=auto'
+alias ls='ls -hF'
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
 alias la='ll -A'
@@ -29,9 +29,6 @@ alias mkdir='mkdir -p -v'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ln='ln -i'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
 alias cls=' echo -ne "\033c"'       # clear screen for real
 # }}}
 
@@ -79,7 +76,6 @@ alias duh='du -h -d 1 . | sort -h'
 # fast jumps
 alias j='jump'
 
-alias open='dispatch xdg-open'
 alias dis='dispatch'
 
 alias rm-secure='shred -n 20 -z -u $@'
