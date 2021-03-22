@@ -39,24 +39,36 @@ Plug 'gregsexton/gitv'
 " show diff on the left
 Plug 'airblade/vim-gitgutter'
 Plug 'ruanyl/vim-gh-line'
+
 " }}}
 " Snippet {{{
 
 " snippet engine.
-" Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
+
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate'
+
 " actual snippets
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " }}}
 " Python {{{
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
+Plug 'vim-syntastic/syntastic'
+" Plug 'integralist/vim-mypy'
 " Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 "Plug 'alfredodeza/pytest.vim'
 "Plug 'heavenshell/vim-pydocstring'
 Plug 'tmhedberg/SimpylFold'
+Plug 'vim-python/python-syntax'
 
+" }}}
+" Tex {{{
+Plug 'lervag/vimtex'
 " }}}
 " Languages {{{
 " Plug 'rust-lang/rust.vim'
@@ -68,6 +80,7 @@ Plug 'tpope/vim-markdown'
 "Plug 'ekalinin/Dockerfile.vim'
 "Plug 'elzr/vim-json'
 Plug 'cstrahan/vim-capnp'
+Plug 'cespare/vim-toml'
 " }}}
 call plug#end()
 " }}}
@@ -258,13 +271,19 @@ let g:gh_open_command = 'firefox '
 
 " UtilSnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<c-space>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 "" If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
+":imap <C-j> <Plug>snipMateNextOrTrigger
+" :smap <C-j> <Plug>snipMateNextOrTrigger
+imap <c-u> <esc>a<Plug>snipMateNextOrTrigger
+smap <c-u> <Plug>snipMateNextOrTrigger
+
+let g:snipMate = { 'snippet_version' : 1 }
 " }}}
 
 " Jedi {{{
@@ -276,6 +295,40 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#force_py_version = 3
+" }}}
+
+" Flake8 {{{
+" let g:flake8_show_in_gutter=1
+" let g:flake8_show_in_file=1
+nnoremap ln :lnext<CR>
+nnoremap lp :lprev<CR>
+let g:syntastic_python_checkers = ['flake8']
+
+
+map <F7> :w<CR>:SyntasticCheck flake8 mypy<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" }}}
+" Python Highlight {{{
+let g:python_highlight_space_errors = 0
+let g:python_highlight_string_formatting = 1
+let g:python_highlight_builtins = 1
+let g:python_highlight_class_vars = 1
+
+let g:python_highlight_builtins  = 1
+let g:python_highlight_exceptions  = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_string_templates = 1
+
 " }}}
 
 " Pytest {{{
