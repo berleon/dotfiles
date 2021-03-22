@@ -176,7 +176,7 @@ set expandtab
 set wrap
 set formatoptions=qrn1
 set linespace=2
-set colorcolumn=100
+set colorcolumn=80
 " }}}
 
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc,tmp,*.scssc
