@@ -45,7 +45,7 @@ plugins=(git last-working-dir jump python fancy-ctrl-z history)
 
 source $ZSH/oh-my-zsh.sh
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" = "Darwin" ]]; then
     if [ "$(sysctl -n sysctl.proc_translated)" = "1" ]; then
         local brew_path="/usr/local/homebrew/bin"
     else

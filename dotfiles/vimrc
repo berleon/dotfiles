@@ -57,6 +57,7 @@ Plug 'honza/vim-snippets'
 " Python {{{
 " Plug 'nvie/vim-flake8'
 Plug 'vim-syntastic/syntastic'
+Plug 'Chiel92/vim-autoformat'
 " Plug 'integralist/vim-mypy'
 " Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
