@@ -13,4 +13,10 @@ export LD_LIBRARY_PATH="/usr/local/lib/"
 export PATH=$PATH:/home/leon/anaconda3/bin
 export PATH=$PATH:~/scripts
 
-export LANG=en_US.utf8
+export LANG="en_US.utf8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
