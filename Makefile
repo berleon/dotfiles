@@ -6,7 +6,7 @@ BG_IMAGE="http://i.imgur.com/uneOa.png"
 GET_BACKGROUND=$(HOME)/background.png
 
 
-all: $(GET_BACKGROUND) oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins theanorc
+all: $(GET_BACKGROUND) oh-my-zsh vim-setup link vim-install-plugins nvim-install-plugins
 
 link:
 	./link.sh
@@ -42,12 +42,6 @@ nvim-install-plugins:
 	ln -sf ~/.vim/colors ~/.config/nvim/colors
 	(which nvim && nvim +PlugInstall +qall) || true
 
-theanorc:
-	./theanorc.sh > ~/.theanorc
 
 $(GET_BACKGROUND):
 	curl -L $(BG_IMAGE) > $(GET_BACKGROUND)
-
-clean:
-	./clean.sh
-	rm ~/.theanorc
