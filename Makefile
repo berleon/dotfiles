@@ -20,7 +20,7 @@ $(OH_MY_ZSH):
 	chsh -s /bin/zsh
 
 $(ZSH_GIT_PROMPT): $(OH_MY_ZSH)
-	git clone https://github.com/olivierverdier/zsh-git-prompt.git $(ZSH_GIT_PROMPT)
+	git clone https://github.com/zsh-git-prompt/zsh-git-prompt.git $(ZSH_GIT_PROMPT)
 
 vim-setup: $(PLUG_NVIM) $(PLUG_VIM)
 	mkdir -p ~/.vim/tmp/backup/
