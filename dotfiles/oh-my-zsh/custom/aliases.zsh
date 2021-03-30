@@ -85,3 +85,11 @@ alias weather='curl wttr.in/berlin'
 
 # set gg to google helper script
 unalias gg
+
+
+if [[ "$(uname)" = "Darwin" ]]; then
+    alias sourcetree='open -a sourcetree'
+    alias firefox='open -a Firefox'
+    alias finder='open -a Finder'
+    alias mail='open -a Mail'
+fi

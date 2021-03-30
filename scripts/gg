@@ -1,5 +1,12 @@
 #! /usr/bin/env bash
 
 X="$@"
-X=${X/ /+}
-firefox --new-tab "https://www.google.de/?q=$X#safe=active&q=$X"
+X=${X// /+}
+
+url="https://www.google.de/search?q=$X"
+echo "Opening $url"
+if [[ "$(uname)" = "Darwin" ]]; then
+    open -a "Firefox" "$url"
+else
+    firefox --new-tab "$url"
+fi
