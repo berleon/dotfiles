@@ -1,5 +1,4 @@
 export PATH=/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-export PATH=$PATH:/usr/bin/core_perl:/usr/bin/vendor_perl/
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.cargo/bin
 export PATH=$PATH:/opt/cuda/bin
@@ -8,10 +7,9 @@ export PATH=$PATH:/usr/local/nvidia/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/.local/bin/
 export EDITOR=vim
-export IDEA_JDK="/opt/oracle_jdk/"
-export LD_LIBRARY_PATH="/usr/local/lib/"
-export PATH=$PATH:/home/leon/anaconda3/bin
 export PATH=$PATH:~/scripts
+export PATH=$PATH:/scripts
+export PATH=$PATH:/Library/TeX/texbin
 
 export LANG="en_US.utf8"
 export LC_COLLATE="en_US.UTF-8"
