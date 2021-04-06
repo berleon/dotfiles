@@ -18,7 +18,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 " Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 " }}}
 " Utility {{{
 Plug 'danro/rename.vim'
@@ -98,7 +98,11 @@ filetype plugin indent on
 syntax on
 
 if has("gui_running")
-    set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+    if has('gui_macvim')
+        set guifont=Inconsolata:h15     " OSX.
+    else
+        set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+    endif
 endif
 
 set background=dark
@@ -304,7 +308,7 @@ let g:jedi#force_py_version = 3
 nnoremap ln :lnext<CR>
 nnoremap lp :lprev<CR>
 let g:syntastic_python_checkers = ['flake8']
-
+let g:syntastic_tex_checkers=[]
 
 map <F7> :w<CR>:SyntasticCheck flake8 mypy<CR>
 
@@ -553,4 +557,11 @@ function! <SID>SynStack()
 endfunc
 " }}}
 
+" }}}
+"
+" GUI {{{
+set noerrorbells
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=   " no bell
 " }}}
