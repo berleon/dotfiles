@@ -1,2 +1,2 @@
-$pdf_update_method = 2;
-$pdf_previewer = 'mupdf';
+$pdf_previewer = 'open -a preview';
+$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode';
