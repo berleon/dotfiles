@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+wakeonlan 00:11:32:df:e3:b6
