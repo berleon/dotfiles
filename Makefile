@@ -16,7 +16,8 @@ link:
 oh-my-zsh: $(OH_MY_ZSH) $(ZSH_GIT_PROMPT)
 
 $(OH_MY_ZSH):
-	git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+	git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
 	chsh -s /bin/zsh
 
 $(ZSH_GIT_PROMPT): $(OH_MY_ZSH)
