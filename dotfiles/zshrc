@@ -52,4 +52,9 @@ if [[ "$(uname)" = "Darwin" ]]; then
         local brew_path="/opt/homebrew/bin"
     fi
     export PATH="${brew_path}:${PATH}"
+    # expose gfind as find
+    export PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
 fi
+export PATH="/usr/local/homebrew/opt/python@3.7/bin:$PATH"
+export PATH="/usr/local/homebrew/opt/python@3.8/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"

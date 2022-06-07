@@ -2,18 +2,26 @@
 	name = berleon
 	email = github@leon-sixt.de
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/leonsixt/.gitignore_global
 	autocrlf = input
 [push]
     default = simple
 [merge]
-    tool = mymeld
     conflictstyle = diff3
-[mergetool "mymeld"]
-    cmd = meld --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge $LOCAL $BASE $REMOTE --output $MERGED
 [credential]
 	helper = store
 [commit]
 	template = /Users/leonsixt/.stCommitMsg
 [init]
 	defaultBranch = main
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+[diff]
+	guitool = meld
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

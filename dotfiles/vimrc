@@ -56,8 +56,11 @@ Plug 'honza/vim-snippets'
 " }}}
 " Python {{{
 " Plug 'nvie/vim-flake8'
+"
+Plug 'ambv/black'
+Plug 'fisadev/vim-isort'
 Plug 'vim-syntastic/syntastic'
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
 " Plug 'integralist/vim-mypy'
 " Plug 'ivanov/vim-ipython'
 Plug 'hynek/vim-python-pep8-indent'
@@ -66,6 +69,7 @@ Plug 'davidhalter/jedi-vim'
 "Plug 'heavenshell/vim-pydocstring'
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-python/python-syntax'
+Plug 'andviro/flake8-vim'
 
 " }}}
 " Tex {{{
@@ -310,6 +314,9 @@ nnoremap lp :lprev<CR>
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_tex_checkers=[]
 
+autocmd BufWritePre *.py execute ':Black'
+nnoremap <F9> :Black<CR>
+
 map <F7> :w<CR>:SyntasticCheck flake8 mypy<CR>
 
 set statusline+=%#warningmsg#
@@ -363,6 +370,7 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " Goyo {{{
 nnoremap <leader>z :Goyo<CR>
+let g:goyo_width = 110
 " }}}
 
 " Cursorline {{{
@@ -389,8 +397,7 @@ augroup END
 " If you want to remove trailing spaces when you want, so not automatically,
 " see
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces#Display_or_remove_unwanted_whitespace_with_a_script.
-autocmd BufWritePre * :%s/\s\+$//e
-
+autocmd BufWritePre *.py :%s/\s\+$//e
 " }}}
 
 " Searching {{{

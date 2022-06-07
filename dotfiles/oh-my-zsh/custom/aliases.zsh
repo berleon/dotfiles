@@ -92,4 +92,6 @@ if [[ "$(uname)" = "Darwin" ]]; then
     alias firefox='open -a Firefox'
     alias finder='open -a Finder'
     alias mail='open -a Mail'
+    alias typora='open -a typora'
 fi
+

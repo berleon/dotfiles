@@ -1,3 +1,4 @@
-$pdf_previewer = 'open -a Skim';
-$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode';
+$pdf_previewer = 'open -a skim  %S --args %O';
+$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode %S';
+$pdf_update_method= 0; 
 @generated_exts = (@generated_exts, 'synctex.gz');
