@@ -1,0 +1,24 @@
+#! /usr/bin/env python3
+
+import sys
+from b2sdk.v2 import B2Api, InMemoryAccountInfo
+import os
+
+# Set up B2 API
+info = InMemoryAccountInfo()
+b2_api = B2Api(info)
+application_key_id = os.environ['B2_APPLICATION_KEY_ID']
+application_key = os.environ['B2_APPLICATION_KEY']
+b2_api.authorize_account('production', application_key_id, application_key)
+
+# Define the bucket and file name
+bucket_name = os.environ['B2_BUCKET']
+file_name = sys.argv[1]
+
+# Get bucket
+bucket = b2_api.get_bucket_by_name(bucket_name)
+
+# Download file and stream to stdout
+file_info = bucket.download_file_by_name(file_name)
+for data in file_info.response.iter_content(chunk_size=1024):
+    sys.stdout.buffer.write(data)

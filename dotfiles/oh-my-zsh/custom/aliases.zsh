@@ -95,3 +95,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
     alias typora='open -a typora'
 fi
 
+
+b2ls() {
+    b2 ls $B2_BUCKET $@
+}
