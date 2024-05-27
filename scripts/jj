@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+show_help() {
+    cat << EOF
+Usage: fncat [OPTIONS] <file1> <file2> <file3> ...
+
+Concatenate files into a single file and write the file name before each file.
+
+Options:
+  --help    Show this help message and exit
+EOF
+}
+
+# Check for --help flag
+if [[ "$1" == "--help" ]]; then
+    show_help
+    exit 0
+fi
+
+
+files=("$@")
+echo ""
+echo "Files:"
+for file in "${files[@]}"; do
+    echo "  - $file"
+done
+echo ""
+
+# Default prompts
+PROMPTS=(
+    "[documentation] Please add documentation to this code"
+    "[review] Please review this code along five dimensions and scores each dimension from 1 to 10. Provide constructive feedback and suggest improvements where necessary."
+    "[tests] Write tests for this code to ensure it works as expected and to prevent future regressions."
+    "[overview] Provide a high-level overview of this code and explain how it fits into the larger system."
+)
+
+# Function to get the prompt based on user input
+get_prompt() {
+    local input="$1"
+    if [[ -z "$input" ]]; then
+        echo "${PROMPTS[0]}"
+    elif [[ $input =~ ^[1-5]$ ]]; then
+        echo "${PROMPTS[$((input-1))]}"
+    else
+        echo "$input"
+    fi
+}
+
+# Display prompts with their numbers
+echo "Please select a prompt or enter a custom prompt:"
+echo ""
+for i in "${!PROMPTS[@]}"; do
+    echo "$((i+1)). ${PROMPTS[i]:0:70}..."
+done
+
+echo ""
+echo ""
+
+# Read the first input to determine the prompt
+echo "Enter a prompt number (1-5) or a custom prompt [default 1]:"
+echo ""
+read -p "" user_input
+PROMPT=$(get_prompt "$user_input")
+
+tmpfile=$(mktemp)
+# Output the prompt
+echo "" > "$tmpfile"
+echo "$PROMPT" >> "$tmpfile"
+echo "---" >> "$tmpfile"
+
+shift # Remove the prompt input from the arguments
+
+# Concatenate files with their names
+for file in "${files[@]}"; do
+    echo "Processing $file"
+    file_contents=$(cat "$file")
+    {
+        echo "// File: $file"
+        cat "$file"
+    } >> "$tmpfile"
+done
+
+cat "$tmpfile" | pbcopy
+echo "Output copied to clipboard"
