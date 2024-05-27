@@ -2,7 +2,7 @@
 
 show_help() {
     cat << EOF
-Usage: fncat [OPTIONS] <file1> <file2> <file3> ...
+Usage: jj [OPTIONS] <file1> <file2> <file3> [-- <command> <args>]
 
 Concatenate files into a single file and write the file name before each file.
 
@@ -17,30 +17,64 @@ if [[ "$1" == "--help" ]]; then
     exit 0
 fi
 
+# Separate files and command
+files=()
+while [[ "$1" != "--" ]]; do
+    if [[ -z "$1" ]]; then
+        break
+    fi
+    files+=("$1")
+    shift
+done
+shift # Remove the -- separator
 
-files=("$@")
+# The remaining arguments are the command and its arguments
+command_to_run=("$@")
+if [[ ${#command_to_run[@]} -eq 0 ]]; then
+    echo "No command provided"
+    command_output=""
+else
+    command_output=$(mktemp)
+    printf "Running command: %s\n" "${command_to_run[@]}"
+    echo "######################## - COMMAND OUTPUT - #######################"
+    "${command_to_run[@]}" | tee "$command_output"
+    echo "#################### - END OF COMMAND OUTPUT - ####################"
+    echo ""
+    echo ""
+    command_output=$(cat "$command_output")
+    rm "$command_output"
+fi
+
 echo ""
-echo "Files:"
+if [[ "$command_output" != "" ]]; then
+    echo "Command & Files:"
+    echo "  - \$ ${command_to_run[@]}"
+else
+    echo "Files:"
+fi
+
 for file in "${files[@]}"; do
     echo "  - $file"
 done
+
 echo ""
 
 # Default prompts
-PROMPTS=(
+prompts=(
     "[documentation] Please add documentation to this code"
     "[review] Please review this code along five dimensions and scores each dimension from 1 to 10. Provide constructive feedback and suggest improvements where necessary."
     "[tests] Write tests for this code to ensure it works as expected and to prevent future regressions."
     "[overview] Provide a high-level overview of this code and explain how it fits into the larger system."
+    "[fix] Please analyze these errors and fix them."
 )
 
 # Function to get the prompt based on user input
 get_prompt() {
     local input="$1"
     if [[ -z "$input" ]]; then
-        echo "${PROMPTS[0]}"
+        echo "${prompts[0]}"
     elif [[ $input =~ ^[1-5]$ ]]; then
-        echo "${PROMPTS[$((input-1))]}"
+        echo "${prompts[$((input-1))]}"
     else
         echo "$input"
     fi
@@ -49,24 +83,49 @@ get_prompt() {
 # Display prompts with their numbers
 echo "Please select a prompt or enter a custom prompt:"
 echo ""
-for i in "${!PROMPTS[@]}"; do
-    echo "$((i+1)). ${PROMPTS[i]:0:70}..."
+
+if [[ "$command_output" == "" ]]; then
+    default_prompt=1
+else
+    default_prompt=5
+fi
+for i in "${!prompts[@]}"; do
+    if [[ $((i+1)) -eq $default_prompt ]]; then
+        echo -n "* "
+    else
+        echo -n "  "
+    fi
+    echo "$((i+1)). ${prompts[i]:0:70}..."
 done
 
 echo ""
 echo ""
 
 # Read the first input to determine the prompt
-echo "Enter a prompt number (1-5) or a custom prompt [default 1]:"
+echo "Enter a prompt number (1-5) or a custom prompt [default $default_prompt]:"
 echo ""
 read -p "" user_input
-PROMPT=$(get_prompt "$user_input")
+
+if [[ -z "$user_input" ]]; then
+    user_input=$default_prompt
+fi
+
+prompt=$(get_prompt "$user_input")
+prompt=$(echo "$prompt" | sed 's/^\[\(.*\)\] //')
 
 tmpfile=$(mktemp)
 # Output the prompt
-echo "" > "$tmpfile"
-echo "$PROMPT" >> "$tmpfile"
-echo "---" >> "$tmpfile"
+echo "Your task: $prompt" >> "$tmpfile"
+
+# Include stdin content as error description
+if [[ "$command_output" != "" ]]; then
+    echo "Output of ${command_to_run[@]}:" >> "$tmpfile"
+    echo "######################## - COMMAND OUTPUT - #######################" >> "$tmpfile"
+    echo "$command_output" >> "$tmpfile"
+    echo "#################### - END OF COMMAND OUTPUT - ####################" >> "$tmpfile"
+else
+    echo "---" >> "$tmpfile"
+fi
 
 shift # Remove the prompt input from the arguments
 
@@ -80,5 +139,19 @@ for file in "${files[@]}"; do
     } >> "$tmpfile"
 done
 
-cat "$tmpfile" | pbcopy
-echo "Output copied to clipboard"
+# Copy to clipboard using available clipboard manager
+if command -v pbcopy &> /dev/null; then
+    cat "$tmpfile" | pbcopy
+    echo "Output copied to clipboard (pbcopy)"
+elif command -v xclip &> /dev/null; then
+    cat "$tmpfile" | xclip -selection clipboard
+    echo "Output copied to clipboard (xclip)"
+elif command -v wl-copy &> /dev/null; then
+    cat "$tmpfile" | wl-copy
+    echo "Output copied to clipboard (wl-copy)"
+else
+    echo "No clipboard utility found. Please install pbcopy, xclip, or wl-clipboard."
+fi
+
+# Clean up
+rm "$tmpfile"
