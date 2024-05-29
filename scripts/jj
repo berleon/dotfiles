@@ -34,15 +34,15 @@ if [[ ${#command_to_run[@]} -eq 0 ]]; then
     echo "No command provided"
     command_output=""
 else
-    command_output=$(mktemp)
+    output_tmpfile=$(mktemp)
     printf "Running command: %s\n" "${command_to_run[@]}"
     echo "######################## - COMMAND OUTPUT - #######################"
-    "${command_to_run[@]}" | tee "$command_output"
+    "${command_to_run[@]}" 2>&1 | tee "$output_tmpfile"
     echo "#################### - END OF COMMAND OUTPUT - ####################"
     echo ""
     echo ""
-    command_output=$(cat "$command_output")
-    rm "$command_output"
+    command_output=$(cat "$output_tmpfile")
+    rm "$output_tmpfile"
 fi
 
 echo ""
@@ -66,14 +66,16 @@ prompts=(
     "[tests] Write tests for this code to ensure it works as expected and to prevent future regressions."
     "[overview] Provide a high-level overview of this code and explain how it fits into the larger system."
     "[fix] Please analyze these errors and fix them."
+    "[jj] Your task is to call a tool called \`jj\`. It should be called as \`jj <file1> <file2> ...\`. \`jj\` should be called with this file and the most relevant other files that are referenced in this file."
 )
 
+n_prompts=${#prompts[@]}
 # Function to get the prompt based on user input
 get_prompt() {
     local input="$1"
     if [[ -z "$input" ]]; then
         echo "${prompts[0]}"
-    elif [[ $input =~ ^[1-5]$ ]]; then
+    elif [[ $input =~ ^[1-$n_prompts]$ ]]; then
         echo "${prompts[$((input-1))]}"
     else
         echo "$input"
@@ -132,11 +134,16 @@ shift # Remove the prompt input from the arguments
 # Concatenate files with their names
 for file in "${files[@]}"; do
     echo "Processing $file"
-    file_contents=$(cat "$file")
-    {
-        echo "// File: $file"
-        cat "$file"
-    } >> "$tmpfile"
+    if [[ ! -f "$file" ]]; then
+        echo "File not found: $file"
+        echo "// File not found: $file" >> "$tmpfile"
+    else
+        {
+            echo "// File: $file"
+
+            cat "$file"
+        } >> "$tmpfile"
+    fi
 done
 
 # Copy to clipboard using available clipboard manager
