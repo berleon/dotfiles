@@ -1,6 +1,6 @@
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 
-source $ZSH/custom/zsh-git-prompt/zshrc.sh
+# source $ZSH/custom/zsh-git-prompt/zshrc.sh
 
 hostname_color() {
     case `hostname` in
@@ -17,9 +17,11 @@ hostname_color() {
 
 maybe_git_super_status() {
     if [ -z ${NO_GIT_PROMPT+x} ]; then
-        git_super_status
+        echo -n $(_zsh_git_prompt_git_status)
     fi
 }
+
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}+"
 
 HOST_COLOR=$(hostname_color)
 PROMPT='[%T]-%{$fg[yellow]%}%n%{$reset_color%}@%{$FG['

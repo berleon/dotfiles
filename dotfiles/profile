@@ -1,0 +1,6 @@
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+. "$HOME/.cargo/env"

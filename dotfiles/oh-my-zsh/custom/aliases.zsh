@@ -99,3 +99,7 @@ fi
 b2ls() {
     b2 ls $B2_BUCKET $@
 }
+
+
+alias cl='wl-copy'
+alias pa='wl-paste'

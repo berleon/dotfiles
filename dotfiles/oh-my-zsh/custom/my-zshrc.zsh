@@ -1,20 +1,7 @@
 export PATH=/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:/opt/cuda/bin
-export PATH=$PATH:/usr/local/cuda/bin
-export PATH=$PATH:/usr/local/nvidia/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/.local/bin/
 export EDITOR=vim
 export PATH=$PATH:~/scripts
-export PATH=$PATH:/scripts
-export PATH=$PATH:/Library/TeX/texbin
 
-export LANG="en_US.utf8"
-export LC_COLLATE="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-export LC_MONETARY="en_US.UTF-8"
-export LC_NUMERIC="en_US.UTF-8"
-export LC_TIME="en_GB.UTF-8"

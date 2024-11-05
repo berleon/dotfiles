@@ -1,5 +1,5 @@
 OH_MY_ZSH=$(HOME)/.oh-my-zsh
-ZSH_GIT_PROMPT=$(HOME)/.oh-my-zsh/custom/zsh-git-prompt
+ZSH_GIT_PROMPT=$(HOME)/.zsh/git-prompt.zsh
 PLUG_VIM=$(HOME)/.vim/autoload/plug.vim
 PLUG_NVIM=$(HOME)/.config/nvim/autoload/plug.vim
 BG_IMAGE="http://i.imgur.com/uneOa.png"
@@ -21,7 +21,7 @@ $(OH_MY_ZSH):
 	chsh -s /bin/zsh
 
 $(ZSH_GIT_PROMPT): $(OH_MY_ZSH)
-	git clone https://github.com/zsh-git-prompt/zsh-git-prompt.git $(ZSH_GIT_PROMPT)
+	git clone --depth=1 https://github.com/woefe/git-prompt.zsh ~/.zsh/git-prompt.zsh
 
 vim-setup: $(PLUG_NVIM) $(PLUG_VIM)
 	mkdir -p ~/.vim/tmp/backup/
