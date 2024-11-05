@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 show_help() {
@@ -8,12 +9,44 @@ Concatenate files into a single file and write the file name before each file.
 
 Options:
   --help    Show this help message and exit
+  gc        Generate commit message for staged changes
 EOF
 }
 
 # Check for --help flag
 if [[ "$1" == "--help" ]]; then
     show_help
+    exit 0
+fi
+
+# Check for gc command
+if [[ "$1" == "gc" ]]; then
+    output_tmpfile=$(mktemp)
+    echo "Generating commit message for staged changes..."
+    git diff --staged > "$output_tmpfile"
+
+    tmpfile=$(mktemp)
+    echo "Your task: Please write a concise and descriptive commit message for these changes. Focus on the what and why. Format it as a short subject line (50 chars max) followed by a blank line and a more detailed description if needed." >> "$tmpfile"
+    echo "Changes to commit:" >> "$tmpfile"
+    echo "######################## - GIT DIFF - #######################" >> "$tmpfile"
+    cat "$output_tmpfile" >> "$tmpfile"
+    echo "#################### - END OF GIT DIFF - ####################" >> "$tmpfile"
+
+    # Copy to clipboard using available clipboard manager
+    if command -v pbcopy &> /dev/null; then
+        cat "$tmpfile" | pbcopy
+        echo "Diff and prompt copied to clipboard (pbcopy)"
+    elif command -v xclip &> /dev/null; then
+        cat "$tmpfile" | xclip -selection clipboard
+        echo "Diff and prompt copied to clipboard (xclip)"
+    elif command -v wl-copy &> /dev/null; then
+        cat "$tmpfile" | wl-copy
+        echo "Diff and prompt copied to clipboard (wl-copy)"
+    else
+        echo "No clipboard utility found. Please install pbcopy, xclip, or wl-clipboard."
+    fi
+
+    rm "$output_tmpfile" "$tmpfile"
     exit 0
 fi
 
@@ -131,7 +164,7 @@ fi
 
 shift # Remove the prompt input from the arguments
 
-# Concatenate files with their names
+# Concatenate files with their names and add line numbers
 for file in "${files[@]}"; do
     echo "Processing $file"
     if [[ ! -f "$file" ]]; then
@@ -140,8 +173,8 @@ for file in "${files[@]}"; do
     else
         {
             echo "// File: $file"
-
-            cat "$file"
+            # Use nl command to add line numbers, format them right-aligned with leading zeros
+            nl -ba -w4 -s': ' "$file"
         } >> "$tmpfile"
     fi
 done
