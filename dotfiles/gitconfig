@@ -4,14 +4,13 @@
 [core]
 	excludesfile = /Users/leonsixt/.gitignore_global
 	autocrlf = input
+	editor = /usr/bin/vim
 [push]
     default = simple
 [merge]
     conflictstyle = diff3
 [credential]
 	helper = store
-[commit]
-	template = /Users/leonsixt/.stCommitMsg
 [init]
 	defaultBranch = main
 [mergetool "meld"]
