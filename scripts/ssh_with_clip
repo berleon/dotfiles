@@ -91,4 +91,8 @@ ssh_clip() { \
 
 log "Setting up SSH connection with port forwarding"
 # Connect with port forwarding and start zsh with our setup
-ssh -t -R "$port:localhost:$port" "$host" "export SSH_CLIPBOARD_PORT=$port && ZDOTDIR=\$HOME zsh -i -c '$ssh_setup zsh'"
+ssh -t -R "$port:localhost:$port" "$host" "
+    # Create environment file
+    echo 'export SSH_CLIPBOARD_PORT=$port' > ~/.ssh_clipboard_env && \
+    export SSH_CLIPBOARD_PORT=$port && \
+    ZDOTDIR=\$HOME zsh -i -c '$ssh_setup zsh'"

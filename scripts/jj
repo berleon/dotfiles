@@ -179,8 +179,13 @@ for file in "${files[@]}"; do
     fi
 done
 
+
+
 # Copy to clipboard using available clipboard manager
-if command -v pbcopy &> /dev/null; then
+if [ "$SSH_CLIPBOARD_PORT" != "" ]; then
+    cat "$tmpfile" | ssh_clip
+    echo "Output copied to clipboard (ssh_clip)"
+elif command -v pbcopy &> /dev/null; then
     cat "$tmpfile" | pbcopy
     echo "Output copied to clipboard (pbcopy)"
 elif command -v xclip &> /dev/null; then

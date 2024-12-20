@@ -61,3 +61,31 @@ fi
 export PATH="/usr/local/homebrew/opt/python@3.7/bin:$PATH"
 export PATH="/usr/local/homebrew/opt/python@3.8/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+
+export PATH="$PATH:/Users/leonsixt/.foundry/bin"
+
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix.sh'
+fi
+
+export PATH="$PATH:/nix/var/nix/profiles/default/bin"
+
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+  . $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
+
+
+
+# Add Nix Path
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+
+# Direnv
+eval "$(direnv hook zsh)"
+
+if [ -f ~/.ssh_clipboard_env ]; then
+  source ~/.ssh_clipboard_env
+fi
