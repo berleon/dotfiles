@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""
+ssh_clip - Send text to a remote clipboard server
+
+This program sends text from stdin or a file to a clipboard server running on a specified port.
+It's designed to work with ssh_with_clip for remote clipboard functionality.
+
+Usage:
+    ssh_clip [file]
+    command | ssh_clip
+
+Environment Variables:
+    SSH_CLIPBOARD_PORT - Port number of the clipboard server (required)
+"""
+
+import sys
+import os
+import socket
+import datetime
+
+
+def log(msg):
+    """Print a timestamped log message to stderr."""
+    print(
+        f"[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}",
+        file=sys.stderr,
+    )
+
+
+def send_to_clipboard(text, port):
+    """Send text to the clipboard server on the specified port."""
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            log(f"Connecting to clipboard server on port {port}")
+            s.connect(("localhost", port))
+            data_size = len(text.encode())
+            log(f"Sending {data_size} bytes to clipboard")
+            s.sendall(text.encode())
+            log("Data sent successfully")
+    except Exception as e:
+        log(f"Error sending to clipboard: {str(e)}")
+        sys.exit(1)
+
+
+def main():
+    # Check for clipboard port
+    port = os.environ.get("SSH_CLIPBOARD_PORT")
+    if not port:
+        log("Error: SSH_CLIPBOARD_PORT environment variable not set")
+        sys.exit(1)
+
+    try:
+        port = int(port)
+    except ValueError:
+        log(f"Error: Invalid port number: {port}")
+        sys.exit(1)
+
+    # Read input
+    if len(sys.argv) > 1:
+        input_file = sys.argv[1]
+        log(f"Reading from file: {input_file}")
+        try:
+            with open(input_file, "r") as f:
+                text = f.read()
+        except Exception as e:
+            log(f"Error reading file: {str(e)}")
+            sys.exit(1)
+    else:
+        log("Reading from stdin")
+        try:
+            text = sys.stdin.read()
+        except Exception as e:
+            log(f"Error reading from stdin: {str(e)}")
+            sys.exit(1)
+
+    # Send to clipboard
+    send_to_clipboard(text, port)
+
+
+if __name__ == "__main__":
+    main()

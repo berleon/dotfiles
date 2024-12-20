@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+#
+# ssh_with_clip - SSH wrapper that provides local clipboard access from remote sessions
+#
+# This script establishes an SSH connection with a remote clipboard copying capability.
+# It starts a local clipboard server and sets up port forwarding, allowing you to copy
+# text from the remote machine directly to your local clipboard.
+#
+# Requirements:
+#   - *ssh*remote_clipboard.py must be available in PATH
+#   - Python 3.x must be installed on the remote machine
+#   - local clipboard tool: xclip (Linux) or pbcopy (macOS)
+#
+# Usage:
+#   ssh_with_clip <hostname> [port]
+#
+# Examples:
+#   ssh_with_clip user@server.com
+#   ssh_with_clip user@server.com 2224
+
+# Set up logging
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >&2
+}
+
+find_available_port() {
+    if [ -n "$1" ]; then
+        log "Using specified port: $1"
+        echo "$1"
+        return
+    fi
+    local port
+    log "Finding available port..."
+    port=$(shuf -i 2000-65000 -n 1)
+    while python3 -c "import socket; s=socket.socket(); s.connect(('localhost', $port))" 2>/dev/null; do
+        log "Port $port is in use, trying another..."
+        port=$(shuf -i 2000-65000 -n 1)
+    done
+    log "Found available port: $port"
+    echo "$port"
+}
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <hostname> [port]"
+    exit 1
+fi
+
+host=$1
+log "Setting up clipboard forwarding for host: $host"
+port=$(find_available_port "$2")
+
+# Start the clipboard server and save its PID
+log "Starting clipboard server on port $port"
+_ssh_remote_clipboard.py "$port" &
+clipboard_pid=$!
+log "Clipboard server started with PID: $clipboard_pid"
+
+# Set up cleanup trap
+trap 'log "Shutting down clipboard server (PID: $clipboard_pid)"; kill $clipboard_pid 2>/dev/null; log "Clipboard server stopped"' EXIT
+
+# Define the Python-based clipboard sender function with logging
+PYTHON_CLIP_FUNC='
+import sys, socket, datetime
+def log(msg):
+    print(f"[{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}] {msg}", file=sys.stderr)
+def send_to_clipboard(text, port):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            log(f"Connecting to clipboard server on port {port}")
+            s.connect(("localhost", port))
+            data_size = len(text.encode())
+            log(f"Sending {data_size} bytes to clipboard")
+            s.sendall(text.encode())
+            log("Data sent successfully")
+    except Exception as e:
+        log(f"Error sending to clipboard: {str(e)}")
+        sys.exit(1)
+'
+
+# Create the remote setup commands
+ssh_setup="export SSH_CLIPBOARD_PORT=$port; \
+ssh_clip() { \
+    if [ -n \"\$1\" ]; then \
+        echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Copying file: \$1\" >&2; \
+        python3 -c \"$PYTHON_CLIP_FUNC; send_to_clipboard(sys.stdin.read(), $port)\" < \"\$1\"; \
+    else \
+        echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Copying from stdin\" >&2; \
+        python3 -c \"$PYTHON_CLIP_FUNC; send_to_clipboard(sys.stdin.read(), $port)\"; \
+    fi \
+};"
+
+log "Setting up SSH connection with port forwarding"
+# Connect with port forwarding and start zsh with our setup
+ssh -t -R "$port:localhost:$port" "$host" "export SSH_CLIPBOARD_PORT=$port && ZDOTDIR=\$HOME zsh -i -c '$ssh_setup zsh'"
